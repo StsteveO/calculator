@@ -1,3 +1,96 @@
-.testing{
-    color: red; 
+/* set-up border-box */
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
 }
+:root{
+    /* --custom name: value; */
+
+    /* BACKGROUND COLORS */
+    /* header and footer background */
+    --header-footer-bg: #181818;
+    /* main background */
+    --main-bg: #FFFB00;
+    /* calculator background */
+    --calc-bg: #3411B3;
+    /* screen background */
+    --screen-bg: #B92DFC;
+    
+
+    /* FONT COLORS */
+    /* hero main ("this website is awesome") text */
+    --header-footer-txt: #FFFB00;
+    /* hero secondary, header link text */
+    --hero-secondary-txt: #e5e7eb;
+    /* header logo text */
+    --header-logo-txt: #f9faf8;
+    /* header ("some random information") text */
+    --header-txt: #1f2937;
+    /* quote text */
+    --quote-txt: #1f2937;
+
+    /* example: color: var(--navy-clr) */
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+}
+header, 
+footer{
+    background: var(--header-footer-bg);
+    color: var(--header-footer-txt);
+}
+header{
+    padding: 0rem 2rem;
+    font-size: xx-large;
+    font-weight: bolder;
+}
+main{
+    background-color: var(--main-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+.calc-container{
+    height: 30rem;
+    width: 24rem;
+    margin: 1rem;
+    border-radius: 20px;
+    background-color: var(--calc-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.equation-screen{
+    background-color: var(--screen-bg);
+    height: 2rem;
+    width: 21rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    text-align: end;
+    padding-right: 1rem;
+    padding-top: .5rem;
+}
+.answer-screen{
+    background-color: var(--screen-bg);
+    height: 5rem;
+    width: 21rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    text-align: end;
+    padding-right: 1rem;
+    padding-top: 1.7rem;
+    
+}
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    font-size: x-large;
+    font-weight: bold;
+}
+
