@@ -16,6 +16,8 @@
     --calc-bg: #3411B3;
     /* screen background */
     --screen-bg: #B92DFC;
+    /* button background */
+    --button-bg: #B92DFC;
     
 
     /* FONT COLORS */
@@ -82,8 +84,49 @@ main{
     margin-top: 1rem;
     text-align: end;
     padding-right: 1rem;
-    padding-top: 1.7rem;
-    
+    padding-top: 1.2rem;
+    font-weight: bolder;
+    font-size: xx-large;
+}
+.buttons-container{
+    margin-top: 1rem;
+    height: 18.5rem;
+    width: 21rem;
+    display: flex;
+    justify-content: center;
+}
+button{
+    text-align: center;
+    font-size:3.4rem;
+    border-radius: 10px;
+    background-color: var(--button-bg);
+    margin: 2px;
+}
+button:hover{
+    background-color: var(--header-footer-bg);
+    color: var(--header-footer-txt);
+}
+.main.buttons{
+    flex-grow: 1;
+}
+.row-1,
+.row-2,
+.row-3,
+.row-last{
+    display: flex;
+}
+.number{
+    flex-grow: 0;
+    width: 5rem;
+}
+.equal{
+    flex-grow: 3;
+}
+.minus,
+.multiply,
+.divide,
+.plus{
+    flex-grow: 2;
 }
 footer{
     display: flex;
@@ -93,4 +136,3 @@ footer{
     font-size: x-large;
     font-weight: bold;
 }
-
