@@ -18,6 +18,8 @@
     --screen-bg: #B92DFC;
     /* button background */
     --button-bg: #B92DFC;
+    /* special-button background */
+    --special-button-bg: #6b1494;
     
 
     /* FONT COLORS */
@@ -39,6 +41,7 @@ body{
     padding: 0px;
     display: flex;
     flex-direction: column;
+    height: 100vh;
 }
 header, 
 footer{
@@ -55,6 +58,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;    
+    flex-grow: 2;
 }
 .calc-container{
     height: 30rem;
@@ -75,6 +79,8 @@ main{
     text-align: end;
     padding-right: 1rem;
     padding-top: .5rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 .answer-screen{
     background-color: var(--screen-bg);
@@ -87,6 +93,8 @@ main{
     padding-top: 1.2rem;
     font-weight: bolder;
     font-size: xx-large;
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 .buttons-container{
     margin-top: 1rem;
@@ -103,8 +111,7 @@ button{
     margin: 2px;
 }
 button:hover{
-    background-color: var(--header-footer-bg);
-    color: var(--header-footer-txt);
+    cursor: pointer;
 }
 .main.buttons{
     flex-grow: 1;
@@ -121,12 +128,17 @@ button:hover{
 }
 .equal{
     flex-grow: 3;
+    background-color: var(--special-button-bg);
 }
 .minus,
 .multiply,
 .divide,
 .plus{
     flex-grow: 2;
+    background-color: var(--special-button-bg);
+}
+.clear{
+    background-color: var(--special-button-bg);
 }
 footer{
     display: flex;
