@@ -1,5 +1,3 @@
-console.log('Hello world!');
-
 let plus=(a,b)=>{
     let arr=[a,b];
     let sum= arr.reduce((prev, curr)=>{
@@ -40,7 +38,7 @@ let operate=(num1,operator,num2)=>{
     }else if(operator==='x'){
         return multiply(num1,num2)
     }else if(operator==='/'){
-        if(num2===0){
+        if(num2==='0'){
             return 'Error'; 
         }else{
             return divide(num1,num2)
@@ -49,20 +47,17 @@ let operate=(num1,operator,num2)=>{
 };
 let equationScreen= document.querySelector('.equation-screen');
 let answerScreen=document.querySelector('.answer-screen');
-// let equationArr= equationScreen.textContent=[];
 let equationArr=[];
-
 
 window.addEventListener('click', function(e){
     let sectionClicked=(e.path[0].localName); //ex. 'button'
     if(sectionClicked!=='button'){
         return
     }
-    let buttonClicked=e.target.outerText; //ex. '6'
-    // console.log(`${buttonClicked} is the burron clicked`);
+    let buttonClicked=e.target.outerText; //ex. '6', text of button
+    equationArr.push(buttonClicked);//pushed clicked buttons into array
 
-    equationArr.push(buttonClicked);
-    //console.log(equationArr);//array of numbers 
+    console.log(equationArr);/////////
 
     let checkForSign=(button)=>{
         return (button==='+'||button==='-'||button==='x'||button==='/');
@@ -71,23 +66,45 @@ window.addEventListener('click', function(e){
     let joinedNumbers= equationArr.join('');//joins numbers to make string
     equationScreen.textContent= joinedNumbers;
 
-    let indexOfSign= equationArr.findIndex(checkForSign);
+    let indexOfSign= equationArr.findIndex(checkForSign);//returns index of first operator  
     if(indexOfSign<0){
         return
     };
-    //console.log(`${indexOfSign} is the index of the first operator`);//returns index of first operator    
-    let operatorClicked=equationArr[indexOfSign];
-    //console.log(operatorClicked);//operator sign clicked on
+    let operatorClicked=equationArr[indexOfSign];//operator sign clicked on
     let number1Clicked= Number((equationArr.slice(0,(indexOfSign))).join(''));
     let number2Clicked= Number((equationArr.slice((indexOfSign+1),(equationArr.length-1))).join(''));
-    //console.log(`${number1Clicked} ${operatorClicked} ${number2Clicked}`)//getting numbers in place to put in function
     let solution=(operate(number1Clicked,operatorClicked,number2Clicked));
 
+
+
     if(buttonClicked==='='){
-        console.log(`${number1Clicked} ${operatorClicked} ${number2Clicked} = ${solution}`)
         equationScreen.textContent=(`${number1Clicked} ${operatorClicked} ${number2Clicked} = ${solution}`);
         answerScreen.textContent=solution;
+        equationArr.splice(0,(equationArr.length-1),solution);
+        equationArr.pop();
     };
+
+    let equalFreq= (equalButtonNew)=>{
+        return (equalButtonNew==='=')
+    };
+    
+    let buttonFreq= (buttonNew)=>{
+        return (buttonNew==='+'||buttonNew==='-'||buttonNew==='x'||buttonNew==='/')
+    };
+    let operatorFreqArr= equationArr.filter(buttonFreq);
+    let operatorFreqLength= operatorFreqArr.length;
+
+    if ((buttonClicked==='+'||buttonClicked==='-'||buttonClicked==='x'||buttonClicked==='/')&& (operatorFreqLength>1)){
+        equationArr.splice(0,(equationArr.length-1),solution);
+        equationScreen.textContent=(`${solution} ${buttonClicked}`);
+        answerScreen.textContent=solution;
+    };
+
+    // console.log(number1Clicked);
+    // console.log(operatorClicked);
+
+
+    
 });
 
 //when user clicks operator, seperate the array between number-operator-number.
