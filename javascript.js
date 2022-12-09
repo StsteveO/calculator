@@ -38,7 +38,7 @@ let operate=(num1,operator,num2)=>{
     }else if(operator==='x'){
         return multiply(num1,num2)
     }else if(operator==='/'){
-        if(num2==='0'){
+        if(num2===0){
             return 'Error'; 
         }else{
             return divide(num1,num2)
@@ -57,6 +57,26 @@ window.addEventListener('click', function(e){
     let buttonClicked=e.target.outerText; //ex. '6', text of button
     equationArr.push(buttonClicked);//pushed clicked buttons into array
 
+    if((buttonClicked==='=')&&(equationArr[0]==='=')){
+        equationArr.pop();
+    }else if((buttonClicked==='=')&&(equationArr[1]==='=')){
+        equationArr.pop();
+        equationScreen.textContent=equationArr[0];
+        answerScreen.textContent=equationArr[0];
+        equationArr.pop();
+    }else if(buttonClicked==='='&&(equationArr[2]==='=')){
+        equationArr.pop();
+        equationArr.pop();
+        equationScreen.textContent=equationArr[0];
+        answerScreen.textContent=equationArr[0];
+        equationArr.pop();
+    };
+
+    if(equationArr[0]==='+'||equationArr[0]==='-'||equationArr[0]==='x'||equationArr[0]==='/'){
+        equationArr.pop();
+
+    };
+
     console.log(equationArr);/////////
 
     let checkForSign=(button)=>{
@@ -70,14 +90,15 @@ window.addEventListener('click', function(e){
     if(indexOfSign<0){
         return
     };
+
     let operatorClicked=equationArr[indexOfSign];//operator sign clicked on
     let number1Clicked= Number((equationArr.slice(0,(indexOfSign))).join(''));
     let number2Clicked= Number((equationArr.slice((indexOfSign+1),(equationArr.length-1))).join(''));
     let solution=(operate(number1Clicked,operatorClicked,number2Clicked));
 
+    
 
-
-    if(buttonClicked==='='){
+    if((buttonClicked==='=')){
         equationScreen.textContent=(`${number1Clicked} ${operatorClicked} ${number2Clicked} = ${solution}`);
         answerScreen.textContent=solution;
         equationArr.splice(0,(equationArr.length-1),solution);
@@ -94,22 +115,10 @@ window.addEventListener('click', function(e){
     let operatorFreqArr= equationArr.filter(buttonFreq);
     let operatorFreqLength= operatorFreqArr.length;
 
+
     if ((buttonClicked==='+'||buttonClicked==='-'||buttonClicked==='x'||buttonClicked==='/')&& (operatorFreqLength>1)){
         equationArr.splice(0,(equationArr.length-1),solution);
         equationScreen.textContent=(`${solution} ${buttonClicked}`);
         answerScreen.textContent=solution;
     };
-
-    // console.log(number1Clicked);
-    // console.log(operatorClicked);
-
-
-    
 });
-
-//when user clicks operator, seperate the array between number-operator-number.
-//find out which operator user clicked
-//put it in readout form
-//plug it into operation() function
-
-//operate(number1Clicked,(operatorClicked), number2Clicked)
